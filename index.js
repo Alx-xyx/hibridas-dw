@@ -12,3 +12,13 @@ edadAlumno.setEdad('21');
 let edad = edadAlumno.retornarEdad();
 console.log(`Tenés ${edad} años`);
 
+const materias = new Alumno();
+let materiasAlumno = materias.mostrarMaterias();
+console.log(`Cursas estas materias: ${materiasAlumno}`);
+
+const agregarMateria = new Alumno();
+agregarMateria.setMateria('Materia nueva');
+
+let addMateria = agregarMateria.setMateria();
+console.log(`Agregaste esta materia ${addMateria}`);
+

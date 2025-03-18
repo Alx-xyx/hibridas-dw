@@ -29,6 +29,9 @@ class Alumno {
     };
     mostrarCarrera = function(){
         return this.carrera;
+    };
+    setMateria(agregarMateria){
+        this.agregarMateria = agregarMateria;
     }
 };
 
