@@ -1,5 +1,5 @@
 // Constantes y variables:
-import fs from "fs"; // Constante para referirse al fileSystem
+import fs from "fs/promises"; // Constante para referirse al fileSystem
 const path = './products.json'; // Indico donde debe llevarse a cabo las lecturas y las escrituras
 
 // Clases:
@@ -13,57 +13,43 @@ class ProductManager{
 
     // Metodos:
 
+    randomID(){
+        const id = crypto.randomUUID;
+        return id;
+    }
     //* Agregar producto *//
 
     // Para añadir un producto hago que mi data pueda quedar registrada como un archivo json
     // Luego utilizo el writeFile para escribir data.
     // Por ultimo se pushea al array de productos el producto.
-    addProduct(product){
+    async addProduct(product){
+        // Antes de agregar informacion es vital leer y fijarnos antes si hay informacion para que no se solape.
+        await this.getProducts();
+        product.id = this.randomID();
+        this.products.push(product);
 
-        // Creo una variable para inicializar mi json de productos sin nada
-        let existingProducts = [];
-
-        // Necesito validar que mi archivo efectivamente exista y tenga contenido, caso contrario me devuelve un undefined
-        if (fs.existsSync(path)) {
-            
-            // Constante fileData el cual lee la data de mi archivo usando el path
-            const fileData = fs.readFileSync(path, 'utf-8');
-
-            // Hago uso de un TryCatch para atajar en caso de que la lectura de mi JSON salga mal, obligando al programa a
-            // utilizar un arreglo vacio. En caso de que en mi fileData haya informacion, voy a parsearla.
-            try {
-                existingProducts = fileData ? JSON.parse(fileData) : [];
-            } catch (error) {
-                console.error('Hubo un error al intentar leer el archivo JSON. Inicializando el arreglo nuevamente vacio');
-                existingProducts = [];
-            }
-        };
-
-        // En caso de haber productos ahora no se sobreescriben si no que directamente se suman a los que existen
-        existingProducts.push(product);
-
-        fs.writeFileSync(path, JSON.stringify(existingProducts, null, 2))
-
-        this.products = existingProducts;
-
-        //! Codigo viejo
-        // // Para poder mantener una lectura constante de las cosas (porque si no se sobre-escriben y no es funcional, hago lo siguiente)
-        // const existingProducts = JSON.parse(fs.readFileSync(path, 'utf-8'));
-        // // Teniendo esto, basicamnete hace una lectura previa de lo que haya en mi json y lo guarda en una variable llamada "existingProducts"
-        // // En caso de haber productos, no los sobre-escribe si no que directamente los va a sumar a lo que existe
-        // existingProducts.push(product);
-        // const data = JSON.stringify(product, null, 2);
-        // fs.writeFile(path, data, function(){
-        // })
-        // // En vez de pushear a los mismos productos, se los pusheo a mi variable
-        // this.products = existingProducts;
+        const data = JSON.stringify(this.products, null, 2);
+        try {
+            await fs.writeFile(path, data);
+            return product.id
+        } catch (error) {
+            console.error('Ha ocurrido un error en el guardado de sus productos');
+            console.error(error);
+        }
     };
 
     //* Obtener productos *//
 
     // Obtiene los productos y los retorna
-    getProducts(){
-        return this.products
+    async getProducts(){
+        try {
+            const data = await fs.readFile(path);
+            console.log('La informacion ha sido obtenida desde el Path. Se procede a decodificar para su lectura');
+            this.products = JSON.parse(data);
+        } catch (error) {
+            console.error('No se ha podido obtener los productos');
+            console.error(error);
+        }
     };
 
     //* Obtener producto por ID *//
