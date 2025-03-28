@@ -1,6 +1,6 @@
 // Constantes y variables:
 import fs from "fs/promises"; // Constante para referirse al fileSystem
-const path = './products.json'; // Indico donde debe llevarse a cabo las lecturas y las escrituras
+const path = "./02_AVENDANO_ALVARO/products.json"; // Indico donde debe llevarse a cabo las lecturas y las escrituras
 
 // Clases:
 class ProductManager{
@@ -11,12 +11,11 @@ class ProductManager{
         this.products = products;
     }
 
+    randomID(){
+        return crypto.randomUUID();
+    }
     // Metodos:
 
-    randomID(){
-        const id = crypto.randomUUID;
-        return id;
-    }
     //* Agregar producto *//
 
     // Para añadir un producto hago que mi data pueda quedar registrada como un archivo json
@@ -31,7 +30,7 @@ class ProductManager{
         const data = JSON.stringify(this.products, null, 2);
         try {
             await fs.writeFile(path, data);
-            return product.id
+            return product.id;
         } catch (error) {
             console.error('Ha ocurrido un error en el guardado de sus productos');
             console.error(error);
@@ -43,12 +42,15 @@ class ProductManager{
     // Obtiene los productos y los retorna
     async getProducts(){
         try {
-            const data = await fs.readFile(path);
-            console.log('La informacion ha sido obtenida desde el Path. Se procede a decodificar para su lectura');
+            const data = await fs.readFile(path, 'utf-8');
             this.products = JSON.parse(data);
+            console.log('La informacion ha sido obtenida desde el Path. Se procede a decodificar para su lectura');
+            console.log(this.products);
+            return this.products;
         } catch (error) {
             console.error('No se ha podido obtener los productos');
             console.error(error);
+            return [];
         }
     };
 
@@ -56,13 +58,17 @@ class ProductManager{
 
     // Analiza con un find que busca un item el cual tenga el mismo item.id que sea provisto.
     // En caso de encontrarlo retorna el producto, caso contrario no devuelve nada.
-    getProductById(){
-        const product = this.products.find(item => item.id == id);
-        return product ? product : {};
+    async getProductById(){
+        try {
+            const products = await this.getProducts();
+            const product = products.find(item => item.id == id);
+            return product ? product : {};
+        } catch (error) {
+            console.error('Hubo un error en obtener los productos mediante la busca del ID');
+            console.error(error);
+        }
     };
 }
-
-const key = '1234';
 
 // Uso el export default ya que solo tengo una sola clase para compartir con los demas modulos.
 // Esto solo se puede hacer con ES6

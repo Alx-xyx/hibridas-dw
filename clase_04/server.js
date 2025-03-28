@@ -2,15 +2,14 @@
 import http from "http";
 import ProductManager from "./02_AVENDANO_ALVARO/classes/ProductManager.js";
 const admin = new ProductManager();
-
 const port = 3000;
 
 const server = http.createServer((req, res) =>{
     // El estado 200 indica que esta todo bien. El content-type indica con el tipo de dato con el que se procesa esa informacion
     const url = req.url;
-    console.log(req.url);
     let body = '';
     let status = 0;
+    console.log(req.url);
 
     if (url == '/') {
         try {
@@ -43,10 +42,8 @@ const server = http.createServer((req, res) =>{
     res.writeHead(status, {"content-type":'text/html'});
     res.end(body);
     console.log('Un cliente ha establecido conexión');
-    
 });
 
 server.listen(port, ()=>{
     console.log(`Servidor web corriendo en el puerto ${port}`);
-    
 })

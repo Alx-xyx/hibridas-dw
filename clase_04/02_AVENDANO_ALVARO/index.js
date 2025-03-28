@@ -37,12 +37,7 @@ const admin = new ProductManager();
         
     }    
  } 
-
-
-
-console.log('Los datos han sido obtenidos correctamente');
-console.log(admin.getProducts());
-
+guardar();
 
 
 
