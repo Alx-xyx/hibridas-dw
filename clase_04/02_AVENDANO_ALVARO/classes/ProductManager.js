@@ -1,4 +1,5 @@
 // Constantes y variables:
+import { error } from "console";
 import fs from "fs/promises"; // Constante para referirse al fileSystem
 const path = "./02_AVENDANO_ALVARO/products.json"; // Indico donde debe llevarse a cabo las lecturas y las escrituras
 
@@ -58,14 +59,25 @@ class ProductManager{
 
     // Analiza con un find que busca un item el cual tenga el mismo item.id que sea provisto.
     // En caso de encontrarlo retorna el producto, caso contrario no devuelve nada.
-    async getProductById(){
+    async getProductById(id){
         try {
             const products = await this.getProducts();
-            const product = products.find(item => item.id == id);
-            return product ? product : {};
+
+            if (!Array.isArray(products)) {
+                throw new error("No se pudo obtener el producto como un array");
+            }
+            
+            product = products.find(item => item.id == (id));
+        
+            if (!product) {
+                return null
+            }
+
+            return product;
         } catch (error) {
             console.error('Hubo un error en obtener los productos mediante la busca del ID');
             console.error(error);
+            throw error;
         }
     };
 }
