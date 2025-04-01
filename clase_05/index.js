@@ -23,8 +23,9 @@ app.get('/products', (req, res) =>{
 app.get('/api/products', async (req, res) =>{
     console.log(chalk.bgMagenta('Estas en: Ruta Api de Productos'));
     res.send('Api Products');
-    const products = await admin.getProducts();
+    let products = [];
     try {
+        products = await admin.getProducts();
         body = '<h1>Los productos de la api</h1>'
         console.log(products);
     } catch (error) {
