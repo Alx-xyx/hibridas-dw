@@ -35,6 +35,7 @@ class ProductManager{
         } catch (error) {
             console.error('Ha ocurrido un error en el guardado de sus productos');
             console.error(error);
+            return null;
         }
     };
 
@@ -60,6 +61,7 @@ class ProductManager{
     // Analiza con un find que busca un item el cual tenga el mismo item.id que sea provisto.
     // En caso de encontrarlo retorna el producto, caso contrario no devuelve nada.
     async getProductById(id){
+        let product;
         try {
             const products = await this.getProducts();
 

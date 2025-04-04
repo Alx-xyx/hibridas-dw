@@ -1,6 +1,22 @@
-{
-  "title": "Mouse Redragon",
-  "description": "Mouse gamer blanco Redragon Cobra",
-  "price": 75,
-  "stock": "36 unidades"
-}
+[
+  {
+    "id": 1,
+    "title": "Mouse Redragon",
+    "description": "Mouse gamer blanco Redragon Cobra",
+    "price": 75,
+    "stock": "36 unidades"
+  },
+  {
+    "id": 2,
+    "title": "Teclado Redragon",
+    "description": "Teclado gamer blanco Redragon Kumara",
+    "price": 87,
+    "stock": "72 unidades"
+  },
+  {
+    "name": "Gabinete Redragon",
+    "price": 1500,
+    "description": "Gabinete blanco metal y acrilico marca Redragon",
+    "id": "88ffa898-898c-4f9c-b735-c78b31e67ba3"
+  }
+]
