@@ -1,0 +1,20 @@
+[
+    {
+        "id": "kafka_char",
+        "name": "Kafka",
+        "elemento": "Rayo",
+        "path": "Nihilidad",
+        "faction": "Cazadores de Stellaron",
+        "img": null,
+        "desc": "Una de las miembros de los Cazadores de Stellaron la cual es incapaz de sentir miedo por naturaleza. Es una criminal muy buscada por la Corporacion Interastral de la Paz pero no es obstaculo para ella, ya que no solo cuenta con habilidades de combate formidables, si no que puede hipnotizar y controlar a la gente "
+    },
+    {
+        "id": "welt_char",
+        "name": "Welt Yang (Joachim Nokianvirtanen)",
+        "elemento": "Imaginario",
+        "path": "Nihilidad",
+        "faction": "Expreso Astral",
+        "img": null,
+        "desc": "El antiguo soverano de la organizacion Anti-entropia y salvador de la destruccion del mundo, hoy en dia recorre el cosmos dentro del Expreso Astral, usando su increible poder de crear agujeros negros y curvar el espacio tiempo para salvar a mundos devastados con su conocimiento veterano."
+    }
+]

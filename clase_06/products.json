@@ -18,5 +18,10 @@
     "price": 1500,
     "description": "Gabinete blanco metal y acrilico marca Redragon",
     "id": "88ffa898-898c-4f9c-b735-c78b31e67ba3"
+  },
+  {
+    "name": "test",
+    "price": 1000,
+    "id": "f99b003c-0a7d-44e1-94c3-298b74f754cf"
   }
 ]
