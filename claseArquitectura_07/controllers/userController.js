@@ -25,6 +25,7 @@ const addUser = async(req,res) =>{
 }
 
 const updateUser = async(req,res) =>{
+    res.json({})
 }
 
 const deleteUser = async (req, res) =>{
@@ -37,4 +38,4 @@ const deleteUser = async (req, res) =>{
     }
 }
 
-export default {getUsers, getUserById, addUser, deleteUser, updateUser}
+export {getUsers, getUserById, addUser, deleteUser, updateUser}
