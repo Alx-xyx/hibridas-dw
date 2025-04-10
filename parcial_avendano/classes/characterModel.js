@@ -1,11 +1,10 @@
 // Constantes y Variables
-import {error} from "console";
 import fs from "fs/promises";
-const path = "./characters.json";
+const path = "./data/characters.json";
 
 //* Class
 
-class Manager{
+class CharacterManager{
     // Declaro mi variable Characters como un array vacio
     characters = [];
 
@@ -21,15 +20,15 @@ class Manager{
         try {
             const data = await fs.readFile(path, 'utf-8');
             this.characters = JSON.parse(data);
-            console.log('Los personajes han sido obtenidos desde el Path.');
-            console.log(this.characters);
+            //console.log('Los personajes han sido obtenidos desde el Path.');
+            //console.log(this.characters);
             return this.characters
         } catch (error) {
-            console.error('No se han podido obtener los personajes');
-            console.error(error);
+            //console.error('No se han podido obtener los personajes');
+            //console.error(error);
             return [];
         }
     }
 }
 
-export default Manager;
+export default CharacterManager;

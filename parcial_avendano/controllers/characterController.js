@@ -1,30 +1,12 @@
-import chalk from "chalk";
-import express from "express";
-import Manager from "./classes/manager.js";
+//? Importo el modelo que necesito para trabajar
+import Chalk from "chalk";
+import CharacterManager from "../classes/characterModel.js";
 
-// Constantes necesarias para el funcionamiento de mi servidor como puertos, app, etc
-const port = 2727;
-const admin = new Manager();
-const app = express();
+const characterManager = new CharacterManager();
 let html = ``;
 
-app.get('/', (req, res) =>{
-    console.log(chalk.bgGreen('Te encuentras en la ruta: Raiz'));
-    try {
-        html += `
-        <h1>Bienvenido al listado de Honkai Star Rail</h1>
-        <a href="/characters">
-            <button type="button">Ver los personajes</button>
-        </a>
-        `
-    } catch (error) {
-        console.error(chalk.bgRed('Ha ocurrido un error al tratar de obtener la ruta'));
-        console.error(error);
-    }
-    res.send(html);
-})
 
-app.get('/characters', async (req, res) =>{
+export const getCharacters = async(req, res) =>{
     console.log(chalk.bgGreen('Te encuentras en la ruta: Characters'));
     let characters = [];
     try {
@@ -56,10 +38,4 @@ app.get('/characters', async (req, res) =>{
         console.error(error);
         res.status(500).send('Error al obtener productos')
     }
-    html = '';
-})
-
-app.listen(port, () =>{
-    console.log(chalk.cyanBright('Status del servidor: Corriendo en el puerto 2727'));
-    
-})
+}
