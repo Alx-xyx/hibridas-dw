@@ -20,12 +20,12 @@ class CharacterManager{
         try {
             const data = await fs.readFile(path, 'utf-8');
             this.characters = JSON.parse(data);
-            //console.log('Los personajes han sido obtenidos desde el Path.');
-            //console.log(this.characters);
+            console.log('Los personajes han sido obtenidos desde el Path.');
+            console.log(this.characters);
             return this.characters
         } catch (error) {
-            //console.error('No se han podido obtener los personajes');
-            //console.error(error);
+            console.error('No se han podido obtener los personajes. Error en el model');
+            console.error(error);
             return [];
         }
     }

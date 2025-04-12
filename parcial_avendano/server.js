@@ -1,18 +1,22 @@
 import chalk from "chalk";
 import express from "express";
+import dotenv from "dotenv";
+import favCharactersRoutes from "./routes/favoriteRoutes.js";
 import characterRoutes from "./routes/characterRoutes.js";
 import homeRoutes from "./routes/homeRoute.js"
 
+dotenv.config();
+
 // Constantes necesarias para el funcionamiento de mi servidor como puertos, app, etc
-const port = 2727;
+const port = process.env.PORT;
 const app = express();
 
-app.get('/', homeRoutes)
-
-app.get('/characters', characterRoutes)
+app.use('/', homeRoutes);
+app.use('/characters', characterRoutes);
+app.use('/favCharacters', favCharactersRoutes)
 
 //* Ruta para mostrar solo los personajes favoritos, esta lista funciona por separado a la lista de personajes.
-app.get('/favorites', async (req, res) =>{
+app.use('/favorites', async (req, res) =>{
     try {
         
     } catch (error) {
@@ -21,7 +25,7 @@ app.get('/favorites', async (req, res) =>{
 });
 
 //* Ruta para agregar personajes a favoritos, la idea es hacerlo por el id
-app.post('/favorites', async(req, res) =>{
+app.use('/favorites', async(req, res) =>{
     try {
         
     } catch (error) {
@@ -30,7 +34,7 @@ app.post('/favorites', async(req, res) =>{
 })
 
 //* Ruta para eliminar por id a mis favoritos
-app.delete('/favorites', async(req, res) =>{
+app.use('/favorites', async(req, res) =>{
     try {
         
     } catch (error) {
