@@ -56,3 +56,41 @@ export const getCharacters = async(req, res) =>{
         res.status(500).send('Error al obtener productos')
     }
 }
+
+export const addCharacter = async (req, res) =>{
+    const character = req.body;
+    console.log({character});
+
+    try {
+        const id = await characterManager.addChar(character)
+        res.json({id})
+    } catch (error) {
+        console.error('Error al agregar personaje',error);
+        res.status(500).json({
+            msg: 'Error interno al agregar el personaje'
+        })
+    }
+}
+
+export const deleteCharacter = async(req, res) =>{
+    try {
+        const id = req.params.id;
+        console.log('ID para eliminar:', id);
+        const status = await characterManager.deleteChar(id);
+        
+        if (status) {
+            res.json({
+                msg: 'Personaje eliminado correctamente de la seccion de personajes'
+            })
+        } else {
+            res.status(404).json({
+                msg: 'No se encontró el personaje solicitado'
+            })
+        }
+    } catch (error) {
+        console.error('Error al eliminar el personaje', error);
+        res.status(500).json({
+            msg: 'Error al eliminar el personaje'
+        })
+    }
+}

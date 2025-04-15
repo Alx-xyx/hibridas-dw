@@ -26,7 +26,7 @@ app.use('/bootstrap', express.static(path.join(_nombreDirectorio, 'node_modules/
 app.use(express.static(path.join(_nombreDirectorio, 'public')));
 
 app.use('/', homeRoutes);
-app.use('/characters', characterRoutes);
+app.use('/', characterRoutes);
 app.use('/', favCharactersRoutes)
 
 
