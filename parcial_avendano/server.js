@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json())
 
 // Este app use me deja usar todos aquellos estilos personalizados que tenga en mi carpeta public
-app.use(express.static(path.join(_nombreDirectorio, 'public')));
+//app.use(express.static(path.join(_nombreDirectorio, 'public')));
 
 app.use('/', homeRoutes);
 app.use('/', characterRoutes);

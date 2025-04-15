@@ -24,6 +24,23 @@ export const getHome = async(req, res) =>{
                     <button type="button">Ver tus personajes favoritos</button>
                 </a>
             </body>
+            <footer>
+                <h2>Informacion del alumno</h2>
+                <ul>
+                    <li>
+                        <p>Nombre y Apellido: Alvaro Manuel Avendaño</p>
+                    </li>
+                    <li>
+                        <p>Nombre de la materia: Aplicaciones Hibridas</p>
+                    </li>
+                    <li>
+                        <p>Nombre del docente: Jonathan Cruz</p>
+                    </li>
+                    <li>
+                        <p>Comision: DWM4AP</p>
+                    </li>
+                </ul>
+            </footer>
         </html>
         `
         res.send(html);
