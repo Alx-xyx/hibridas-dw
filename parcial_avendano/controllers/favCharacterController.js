@@ -9,20 +9,21 @@ const characterManager = new CharacterManager;
 
 export const getFavs = async (req, res) => {
     try {
+
         // Cargamos los favoritos
         await favCharacterManager.loadFavs();
-        const favIds = await favCharacterManager.getFavs(); // [ 'kafka_char', 'blackSwan_char' ]
+        const favIds = await favCharacterManager.getFavs(); // Guardo mis favoritos en mi constante
 
-        // Ahora buscamos todos los personajes y filtramos aquellos que están en favoritos
+        // Busco todos los personajes y fitlro todos los que están en favoritos
         const allChars = await characterManager.getChar();
         const favCharacters = allChars.filter(char => favIds.includes(char.id));
 
-        // Si no hay personajes favoritos, mostramos un mensaje
+        // Si no hay favoritos, mostramos un mensaje
         if (favCharacters.length === 0) {
             return res.json({ msg: "Todavía no tienes personajes favoritos." });
         }
 
-        // Si los favoritos existen, los mostramos
+        // Si hey favoritos existen, mando mediante response
         res.status(200).json(favCharacters);
         
     } catch (error) {

@@ -4,7 +4,7 @@ import { getCharacters, addCharacter, deleteCharacter } from "../controllers/cha
 //! Creo la constante que me habilita el uso de rutas
 const router = express.Router();
 
-//* Ruta para obtener todos los personajes
+//* Rutas y metodos para obtener todos los personajes
 
 router
     .get("/characters", getCharacters)

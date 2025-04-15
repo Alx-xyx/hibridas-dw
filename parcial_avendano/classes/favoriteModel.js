@@ -32,7 +32,6 @@ class FavCharacterManager{
     }
 
     //? Agregado de cambios (en caso de que hayan)
-
     async saveFavs(){
         try {
             console.log("Guardando cambios en el archivo...");
@@ -47,12 +46,12 @@ class FavCharacterManager{
     //? Agregado de un personaje fav al json
     async addFav(newCharId) {
         try {
-            await this.loadFavs(); // Cargar los favoritos actuales
+            await this.loadFavs(); // Cargo los favoritos actuales
             if (this.favChars.includes(newCharId)) {
-                return false; // Si ya existe, no lo agregues
+                return false; // Si ya existe, no se agrega
             }
-            this.favChars.push(newCharId); // Agregar el nuevo id al array
-            await this.saveFavs(); // Guardar los cambios
+            this.favChars.push(newCharId); // Se agrega el nuevo id al array
+            await this.saveFavs(); // Se guarda los cambios
             return true;
         } catch (error) {
             console.error("Error al agregar favorito:", error);
@@ -62,21 +61,21 @@ class FavCharacterManager{
     
     async deleteFav(id) {
         try {
-            await this.loadFavs(); // Cargar los favoritos actuales
-            console.log("Favoritos cargados:", this.favChars); // Verificar si los favoritos se cargan correctamente
+            await this.loadFavs(); // Traigo los favoritos actuales
+            console.log("Favoritos cargados:", this.favChars); // Verifico si realmente se cargan
             
-            const pos = this.favChars.findIndex(char => char === id); // Buscar la posición del favorito
-            console.log("Posición encontrada:", pos); // Verificar si la posición es correcta
+            const pos = this.favChars.findIndex(char => char === id); // Busco la posicion de este personaje favorito mediante ID
+            console.log("Posición encontrada:", pos); // Verifico si es correcta esa posicion
     
             if (pos === -1) {
                 console.log("El personaje no está en los favoritos");
                 return false; // Si no se encuentra el id, retorna false
             }
     
-            this.favChars.splice(pos, 1); // Eliminar el favorito
-            console.log("Favoritos después de la eliminación:", this.favChars); // Verificar que el favorito fue eliminado
+            this.favChars.splice(pos, 1); // Con splice, saco el favorito
+            console.log("Favoritos después de la eliminación:", this.favChars); // Verifico que realmente se elimino
     
-            // Guardar los cambios en el archivo
+            // Guardo los cambios en el archivo una vez mas
             await this.saveFavs();
             console.log("Favoritos guardados correctamente");
     

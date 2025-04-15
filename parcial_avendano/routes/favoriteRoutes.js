@@ -4,10 +4,10 @@ import { getFavs, addFavs, deleteFavs } from "../controllers/favCharacterControl
 //! Creo la constante que me habilita al uso de rutas
 const router = express.Router();
 
-//* Ruta para obtener mis personajes favs;
+//* Rutas y metodos para obtener mis personajes favs;
 
 router
-    .get('/favCharacters', getFavs)
+    .get('/favCharacters', getFavs) 
     .post('/favCharacters/add', addFavs)
     .delete('/favCharacters/delete/:id', deleteFavs);
 
