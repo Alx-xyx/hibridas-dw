@@ -1,14 +1,5 @@
 [
   {
-    "id": "kafka_char",
-    "name": "Kafka",
-    "elemento": "Rayo",
-    "path": "Nihilidad",
-    "faction": "Cazadores de Stellaron",
-    "img": null,
-    "desc": "Una de las miembros de los Cazadores de Stellaron la cual es incapaz de sentir miedo por naturaleza. Es una criminal muy buscada por la Corporacion Interastral de la Paz pero no es obstaculo para ella, ya que no solo cuenta con habilidades de combate formidables, si no que puede hipnotizar y controlar a la gente "
-  },
-  {
     "id": "welt_char",
     "name": "Welt Yang (Joachim Nokianvirtanen)",
     "elemento": "Imaginario",
@@ -34,11 +25,5 @@
     "faction": "Herederos de Crisos",
     "img": null,
     "desc": "Castorice, la encarnacion del dios de la muerte e hija del Rio de las almas, es parte de los Herederos de Crisos los cuales luchan contra los titanes buscando como recompensa sus Yescas con el fin de ascender a semidioses. Ella, pese a no poder tocar nada que este vivo, ya que drena su vida con el tacto, lucha por la vida en la ciudad de Amphoreus en busqueda de paz."
-  },
-  {
-    "id": "silverWolf_char",
-    "name": "Silver Wolf",
-    "elemento": "Cuantico",
-    "path": "Nihilidad"
   }
 ]

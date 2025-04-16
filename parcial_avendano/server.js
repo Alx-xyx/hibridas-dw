@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import favCharactersRoutes from "./routes/favoriteRoutes.js";
 import characterRoutes from "./routes/characterRoutes.js";
 import homeRoutes from "./routes/homeRoute.js"
+import userRoutes from "./routes/userRoutes.js";
 import path from "path"
 
 // Este es un parseador para el body ya que si intento leer algo desde el body, por ejemplo, info de un formulario, no lo puedo hacer sin este middleware
@@ -24,7 +25,8 @@ app.use(express.json())
 
 app.use('/', homeRoutes);
 app.use('/', characterRoutes);
-app.use('/', favCharactersRoutes)
+app.use('/', favCharactersRoutes);
+app.use('/', userRoutes);
 
 
 app.listen(port, () =>{

@@ -57,6 +57,25 @@ export const getCharacters = async(req, res) =>{
     }
 }
 
+export const getCharById = async(req, res) =>{
+    const id = req.params.id;
+    try {
+        const character = await characterManager.getCharById(id);
+        if (character) {
+            res.status(200).json(character);
+        } else{
+            res.status(404).json({
+                msg: "No se ha encontrado el usuario"
+            })
+        }
+    } catch (error) {
+        console.error('Error en el controlador de getCharById', error);
+        res.status(500).json({
+            msg: "Error interno al tratar de obtener el personaje"
+        })
+    }
+}
+
 export const addCharacter = async (req, res) =>{
     const character = req.body;
     console.log({character});
@@ -93,4 +112,30 @@ export const deleteCharacter = async(req, res) =>{
             msg: 'Error al eliminar el personaje'
         })
     }
+}
+
+export const updateChar = async(req, res) =>{
+    // Saco el id y demas informacion por parametro
+    const id = req.params.id;
+    const newData = req.body;
+
+    try {
+        const status = await characterManager.updateChar(id, updatedData);
+
+        if (status) {
+            res.json({
+                msg: 'Personaje actualizado correctamente' 
+            });
+        } else {
+            res.status(404).json({
+                msg: 'Personaje no encontrado' 
+            });
+        }
+    } catch (error) {
+        console.error('Error en el controlador de actualización:', error);
+        res.status(500).json({
+            msg: 'Error interno del servidor' 
+        });
+    }
+
 }

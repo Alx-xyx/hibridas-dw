@@ -30,6 +30,18 @@ class CharacterManager{
         }
     }
 
+    async getCharById(id){
+        await this.getChar();
+        const character = this.characters.find(char => char.id === id);
+        console.log(character);
+        
+        if (character) {
+            return character;  // Si lo encuentra, devuelve el personaje
+        } else {
+            return null;  // Si no lo encuentra, devuelve null
+        }
+    }
+
     async addChar(character){
         await this.getChar();
         this.characters.push(character);
@@ -46,25 +58,53 @@ class CharacterManager{
     async deleteChar(id){
         try {
             await this.getChar();
-            console.log('Personajes cargados:', this.characters);
+            //console.log('Personajes cargados:', this.characters);
             const pos = this.characters.findIndex(char => char === id);
-            console.log('Posicion encontrada:', pos);
+            //console.log('Posicion encontrada:', pos);
 
             if (pos === -1) {
                 console.log('No se han encontrado personajes');
                 return false;
             }
 
-            this.characters.splice(pos, 1);
-            console.log('Personajes despues de la eliminacion:', this.characters);
+            this.characters.splice(pos, 1); // Elimino el personaje con splice
 
-            await this.getChar();
-            console.log('Peronsajes actuales:', this.characters);
-            
+            const data = JSON.stringify(this.characters, null, 2);
+            await fs.writeFile(path, data); // Guardo los cambios una vez realizados
+
+            console.log('Personaje eliminado correctamente.');
             return true;
         } catch (error) {
             console.error('Error al eliminar el personaje:', error);
             return false;
+        }
+    }
+
+    async updateChar(id, newData){
+        try {
+            // Busco mis personajes para tenerlos a mano
+            await this.getChar()
+
+            const index = this.characters.findIndex(char => char.id === id);
+            if (index === -1) {
+                console.log('No se ha encontrado el personaje deseado',error);
+                return false
+            }
+
+            this.characters[index] = {
+                ...this.characters[index],
+                ...newData
+            };
+
+            // Guardo los cambios una vez realizados
+            const data = JSON.stringify(this.characters, null, 2);
+            await fs.writeFile(path, data);
+            
+            console.log('Datos del personaje modificados correctamente');
+            return true;
+        } catch (error) {
+            console.error('Error en el metodo updateChar en el metodo', error);
+            return false
         }
     }
 }
