@@ -1,21 +1,20 @@
-import chalk from "chalk";
 import express from "express";
+import { connectDB } from "./controllers/db.js"; 
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import favCharactersRoutes from "./routes/favoriteRoutes.js";
 import characterRoutes from "./routes/characterRoutes.js";
 import homeRoutes from "./routes/homeRoute.js"
 import userRoutes from "./routes/userRoutes.js";
-import path from "path"
-import mongoose from "mongoose";
+import chalk from "chalk";
 
-//* Conexion con mongoDB
-mongoose.connect(process.env.uri)
-    .then(() => console.log(chalk.greenBright('Conexion exitosa con MongoDB')))
-    .catch(() => console.error(chalk.redBright('Conexion fallida con MongoDB')));
 
 // Este es un parseador para el body ya que si intento leer algo desde el body, por ejemplo, info de un formulario, no lo puedo hacer sin este middleware
 import bodyParser from "body-parser";
 dotenv.config();
+
+//* Conexion con mongoDB
+connectDB();
 
 // Constantes necesarias para el funcionamiento de mi servidor como puertos, app, etc
 const port = process.env.PORT;
@@ -28,10 +27,10 @@ app.use(express.json())
 // Este app use me deja usar todos aquellos estilos personalizados que tenga en mi carpeta public
 //app.use(express.static(path.join(_nombreDirectorio, 'public')));
 
-app.use('/', homeRoutes);
-app.use('/', characterRoutes);
-app.use('/', favCharactersRoutes);
-app.use('/', userRoutes);
+app.use('/api', homeRoutes);
+app.use('/api/characters', characterRoutes);
+app.use('/api/favorites', favCharactersRoutes);
+app.use('/api/users', userRoutes);
 
 
 app.listen(port, () =>{

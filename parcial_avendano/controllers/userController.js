@@ -1,6 +1,16 @@
 import AppUsersManager from "../classes/userModel.js";
 
 const appUserModel = new AppUsersManager;
+//import jsonwebtoken from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
+const secret_key = process.env.SECRET_KEY;
+const salt = 10;
+
+export const auth = async(req, res) =>{
+    const {email, password} = req.body;
+}
 
 export const getUsers = async(req, res) =>{
     const users = await appUserModel.getUsers();

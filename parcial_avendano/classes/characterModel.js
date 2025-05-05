@@ -1,5 +1,6 @@
 //! Importo mi schema a utilizar
-import { Character, Personaje } from "../models/characterSchema";
+import chalk from "chalk";
+import { Character } from "../models/characterSchema.js";
 // Queda obsoleto al usar MongoDB -> import fs from "fs/promises";
 //! Constantes y Variables
 // Queda obsoleto al usar MongoDB -> const path = "./data/characters.json";
@@ -19,27 +20,52 @@ class CharacterManager{
     
     //? Obtencion de personajes
     async getChar(){
-        return await Character.find();
+        try {
+            return await Character.find();
+        } catch (error) {
+            console.error(chalk.redBright('Error en el modelo al obtener personajes'));
+            console.error(error);
+        }
     };
 
     async getCharById(id){
-        return await Character.findOne({id});
+        try {
+            return await Character.findOne({id});
+        } catch (error) {
+            console.error(chalk.redBright('Error en el modelo al obtener personajes'));
+            console.error(error);
+        }
     };
     
     async addChar(character){
-        const newChar = new Character(character);
-        await newChar.save();
-        return newChar.id;
+        try {
+            const newChar = new Character(character);
+            await newChar.save();
+            return newChar.id;
+        } catch (error) {
+            console.error(chalk.redBright('Error en el modelo al agregar un personaje'));
+            console.error(error);
+        }
     };
 
     async deleteChar(id){
-        const result = await Character.deleteOne({id});
-        return result.deletedCount > 0;
+        try {
+            const result = await Character.deleteOne({id});
+            return result.deletedCount > 0;
+        } catch (error) {
+            console.error(chalk.redBright('Error en el modelo al borrar un personaje'));
+            console.error(error);
+        }
     };
 
     async updateChar(id, newData){
-        const result = await Character.updateOne({id}, {$set:newData});
-        return result.matchedCount > 0;
+        try {
+            const result = await Character.updateOne({id}, {$set:newData});
+            return result.matchedCount > 0;
+        } catch (error) {
+            console.error(chalk.redBright('Error en el modelo al actualizar un personaje'));
+            console.error(error);
+        }
     }
 
     // async getChar(){

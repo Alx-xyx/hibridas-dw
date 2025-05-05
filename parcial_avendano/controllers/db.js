@@ -1,12 +1,14 @@
 //! Importo mongoose para ser usado
+import dotenv from 'dotenv';
 import mongoose from "mongoose";
 import chalk from "chalk";
 
-//* Defino el controller
+dotenv.config();
 
+//* Defino mi constante que manejara la base de datos
 export const connectDB = async () => {
     try {
-        await mongoose.connect('uri', {
+        await mongoose.connect(process.env.MONGODB_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });

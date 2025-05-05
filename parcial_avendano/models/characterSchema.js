@@ -12,4 +12,4 @@ const characterSchema = new mongoose.Schema({
 })
 
 //? Exporto mi constante personaje, el cual usa como modelo mi characterSchema
-export const Character = mongoose.model('Character', characterSchema);
+export const Character = mongoose.model('Character', characterSchema, 'Characters');
