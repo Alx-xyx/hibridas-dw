@@ -120,7 +120,7 @@ export const updateChar = async(req, res) =>{
     const newData = req.body;
 
     try {
-        const status = await characterManager.updateChar(id, updatedData);
+        const status = await characterManager.updateChar(id, newData);
 
         if (status) {
             res.json({

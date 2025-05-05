@@ -6,10 +6,15 @@ import characterRoutes from "./routes/characterRoutes.js";
 import homeRoutes from "./routes/homeRoute.js"
 import userRoutes from "./routes/userRoutes.js";
 import path from "path"
+import mongoose from "mongoose";
+
+//* Conexion con mongoDB
+mongoose.connect(process.env.uri)
+    .then(() => console.log(chalk.greenBright('Conexion exitosa con MongoDB')))
+    .catch(() => console.error(chalk.redBright('Conexion fallida con MongoDB')));
 
 // Este es un parseador para el body ya que si intento leer algo desde el body, por ejemplo, info de un formulario, no lo puedo hacer sin este middleware
 import bodyParser from "body-parser";
-
 dotenv.config();
 
 // Constantes necesarias para el funcionamiento de mi servidor como puertos, app, etc
