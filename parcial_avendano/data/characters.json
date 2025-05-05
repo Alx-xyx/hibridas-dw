@@ -9,7 +9,7 @@
     "desc": "El antiguo soverano de la organizacion Anti-entropia y salvador de la destruccion del mundo, hoy en dia recorre el cosmos dentro del Expreso Astral, usando su increible poder de crear agujeros negros y curvar el espacio tiempo para salvar a mundos devastados con su conocimiento veterano."
   },
   {
-    "id": "blackSwan_char",
+    "id": "blackswan_char",
     "name": "Cisne Negro",
     "elemento": "Viento",
     "path": "Nihilidad",
@@ -25,5 +25,51 @@
     "faction": "Herederos de Crisos",
     "img": null,
     "desc": "Castorice, la encarnacion del dios de la muerte e hija del Rio de las almas, es parte de los Herederos de Crisos los cuales luchan contra los titanes buscando como recompensa sus Yescas con el fin de ascender a semidioses. Ella, pese a no poder tocar nada que este vivo, ya que drena su vida con el tacto, lucha por la vida en la ciudad de Amphoreus en busqueda de paz."
-  }
+  },
+  {
+    "id": "sunday_char",
+    "name": "Sunday",
+    "elemento": "Imaginario",
+    "path": "Armonía",
+    "faction": "Familia Roble",
+    "img": null,
+    "desc": "Sunday, antiguo líder de la Familia Roble en Penacony y hermano de Robin, fue una figura central en los eventos del paisaje onírico. Tras abandonar su posición de poder y su afiliación al Orden, emprendió un viaje en busca de redención y una utopía personal. Su historia refleja una lucha interna entre el deber y el deseo de redención, convirtiéndolo en un personaje complejo y profundamente humano."
+  },
+  {
+    "id": "gallagher_char",
+    "name": "Gallagher",
+    "elemento": "Fuego",
+    "path": "Abundancia",
+    "faction": "Familia Sabueso",
+    "img": null,
+    "desc": "Gallagher es un oficial de seguridad de la Familia Sabueso en Penacony y también un barman descuidado e indolente. Aunque su vestimenta luzca desordenada y su forma de preparar las bebidas sea relajada, siempre es cortés con los invitados, pero se mantiene alerta. Parece ser un personaje con un pasado complicado, aunque nunca menciona los detalles. Su historia refleja una lucha interna entre el deber y el deseo de redención, convirtiéndolo en un personaje complejo y profundamente humano."
+  },
+  {
+    "id": "ruan_mei_char",
+    "name": "Ruan Mei",
+    "elemento": "Hielo",
+    "path": "Armonía",
+    "faction": "Círculo de Genios",
+    "img": null,
+    "desc": "Ruan Mei es una erudita de carácter gentil y elegante, miembro número 81 del Círculo de Genios y experta en ciencias de la vida. Su dedicación y talento llamaron la atención de Nous, lo que la llevó a colaborar con Herta, Screwllum y Stephen en el desarrollo del Universo Simulado. A pesar de su papel fundamental en este proyecto, prefiere mantener un perfil reservado. En su tiempo libre, disfruta de los dulces, el teatro tradicional y el bordado, reflejando una personalidad refinada y apasionada por las artes."
+  },
+  {
+    "id": "robin_char",
+    "name": "Robin",
+    "elemento": "Físico",
+    "path": "Armonía",
+    "faction": "La Familia",
+    "img": null,
+    "desc": "Robin es una cantante aureoliana originaria de Colonipenal que alcanzó la fama cósmica gracias a su talento y elegancia. Invitada por La Familia para actuar en el Festival Carismonía, su música tiene la capacidad de resonar no solo entre sus seguidores, sino también entre diversas formas de vida. Nacida en una ciudad devastada por el Estelaron, fue acogida por La Familia junto a su hermano Sunday, recibiendo una educación excepcional que potenció su habilidad musical. A pesar de su éxito, Robin mantiene una actitud modesta y serena, dedicando su arte a aquellos que han perdido la esperanza."
+  },
+  {
+    "id": "anaxagoras_char",
+    "name": "Anaxágoras",
+    "elemento": "Viento",
+    "path": "Erudición",
+    "faction": "Herederos de Crisos",
+    "img": null,
+    "desc": "Anaxágoras, uno de los Siete Sabios del Soto de las Musas y fundador de la Escuela de la Semilla, es conocido por su mente brillante y su carácter estricto. Rechaza ser llamado 'Anaxa' y valora el silencio como una virtud. Su conocimiento es tan profundo que desafía las profecías establecidas, sembrando dudas entre los Herederos de Crisos. En combate, utiliza su intelecto para imponer múltiples debilidades a sus enemigos, desestabilizándolos y aprovechando sus puntos débiles. Su historia es un testimonio de la lucha entre la sabiduría y la fe, y su presencia en el campo de batalla refleja la fuerza del conocimiento frente a la superstición."
+  },
+  null
 ]
