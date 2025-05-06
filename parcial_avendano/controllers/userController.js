@@ -13,13 +13,13 @@ export const auth = async(req, res) =>{
 }
 
 export const getUsers = async(req, res) =>{
-    const users = await appUserModel.getUsers();
+    const users = await User.find();
     res.status(200).json(users);
 }
 
 export const getUserByID = async(req, res) =>{
     const id = req.params.id;
-    const user = await appUserModel.getUserByID(id);
+    const user = await User.getUserByID(id);
     if (user) {
         res.status(200).json(user);
     } else {
@@ -34,7 +34,7 @@ export const addUser = async(req, res) =>{
     console.log({
         user
     });
-    const id = await appUserModel.addUser(user);
+    const id = await User.save(user);
     res.json({
         id
     })
@@ -42,7 +42,7 @@ export const addUser = async(req, res) =>{
 
 export const deleteUser = async(req, res) =>{
     const id = req.params.id;
-    const status = await appUserModel.deleteUser(id);
+    const status = await User.deleteUser(id);
     if (status) {
         res.json({
             msg: 'Usuario eliminado con exito'
@@ -58,7 +58,7 @@ export const updateUser = async(req, res) =>{
     // Pido el ID y el email por parametro
     const id = req.params.id;
     const newEmail = req.body;
-    const status = await appUserModel.updateUser(id, newEmail);
+    const status = await User.updateUser(id, newEmail);
 
     if (status) {
         res.json({
