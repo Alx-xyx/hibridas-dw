@@ -1,6 +1,5 @@
 //? Importo el modelo que necesito para trabajar
 import chalk from "chalk";
-// import CharacterManager from "../classes/characterModel.js";
 import { Character } from "../models/characterSchema.js"
 
 export const getCharacters = async(req, res) =>{
@@ -19,10 +18,10 @@ export const getCharacters = async(req, res) =>{
 export const getCharById = async(req, res) =>{
     const id = req.params.id;
     try {
-        const character = await Character.findOne({id});
-        if (character) {
+        const characterById = await Character.findOne(id);
+        if (characterById) {
             console.log(chalk.greenBright('Se han obtenido el personaje por ID'));
-            res.status(200).json(character);
+            res.status(200).json(characterById);
         } else{
             res.status(404).json({
                 msg: "No se ha encontrado el usuario"

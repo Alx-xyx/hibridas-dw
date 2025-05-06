@@ -11,6 +11,7 @@ const dburi = process.env.MONGODB_URI;
 export const connectDB = async () => {
     try {
         await mongoose.connect(dburi);
+        
         const db = mongoose.connection;
         db.on('error', (error) => {
             console.error(chalk.redBright('Ha ocurrido un error al conectarse con la base de datos'), {error} ) 
@@ -20,7 +21,7 @@ export const connectDB = async () => {
             console.log(chalk.greenBright('Conexion con la Db Correcta'))
         });
         console.log(chalk.bgGreenBright('Conexion exitosa a MongoDB'));
-        
+
     } catch (error) {
         console.error(chalk.redBright('Conexion fallida a MongoDB'));
         console.error(error);
