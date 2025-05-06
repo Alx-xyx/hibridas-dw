@@ -1,7 +1,5 @@
 import express from "express";
 import { getCharacters, addCharacter, deleteCharacter, updateChar, getCharById } from "../controllers/characterController.js";
-//! Importo desde mi modelo el schema que quiero utilizar
-import { Character } from "../models/characterSchema.js";
 
 //! Creo la constante que me habilita el uso de rutas
 const router = express.Router();

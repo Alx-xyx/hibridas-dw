@@ -1,7 +1,6 @@
 import chalk from "chalk";
-import { User } from "../models/userSchema";
+import { User } from "../models/userSchema.js";
 
-const appUserModel = new AppUsersManager;
 //import jsonwebtoken from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
