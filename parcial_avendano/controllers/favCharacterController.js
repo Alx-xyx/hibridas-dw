@@ -1,78 +1,82 @@
-//* Importo todo lo necesario
-import FavCharacterManager from "../classes/favoriteModel.js";
-import CharacterManager from "../classes/characterModel.js";
 import chalk from "chalk";
-
-//* Creo mis constantes
-const favCharacterManager = new FavCharacterManager;
-const characterManager = new CharacterManager;
+import {FavCharacter} from '../models/favCharSchema.js';
 
 export const getFavs = async (req, res) => {
+    console.log(chalk.bgGreen('Te encuentras en la ruta: Fav Characters'));
     try {
-
-        // Cargamos los favoritos
-        await favCharacterManager.loadFavs();
-        const favIds = await favCharacterManager.getFavs(); // Guardo mis favoritos en mi constante
-
-        // Busco todos los personajes y fitlro todos los que están en favoritos
-        const allChars = await characterManager.getChar();
-        const favCharacters = allChars.filter(char => favIds.includes(char.id));
-
-        // Si no hay favoritos, mostramos un mensaje
-        if (favCharacters.length === 0) {
-            return res.json({ msg: "Todavía no tienes personajes favoritos." });
-        }
-
-        // Si hey favoritos existen, mando mediante response
-        res.status(200).json(favCharacters);
-        
+        const favCharacters = await FavCharacter.find();
+        res.json(favCharacters);
+        console.log(chalk.greenBright('Se han obtenido los personajes favoritos exitosamente', favCharacters));
     } catch (error) {
-        console.error('Error al obtener personajes favoritos:', error);
-        res.status(500).json({ msg: "Error al obtener los personajes favoritos" });
+        console.error(chalk.redBright('Ha ocurrido un error al intentar obtener a los personajes favoritos. Error en el Controller'));
+        console.error(error);
+        res.status(500).send('Error en el controller al obtener personajes')
     }
 }
 
 export const addFavs = async (req, res) => {
-    // Solo obtenemos el id del personaje
-    const { id } = req.body;
-
+    const favCharData = req.body;
+    console.log(favCharData);
     try {
-        // Asegúrate de cargar los favoritos
-        await favCharacterManager.loadFavs();
-
-        // Verificamos si el personaje ya está en favoritos
-        if (favCharacterManager.favChars.includes(id)) {
-            return res.status(400).json({ msg: "El personaje ya está en favoritos" });
-        }
-
-        // Agregar el id al listado de favoritos
-        const status = await favCharacterManager.addFav(id);
-
-        if (status) {
-            res.json({ msg: "Personaje favorito agregado correctamente" });
-        } else {
-            res.status(400).json({ msg: "No se pudo agregar el personaje" });
-        }
-
+        const newFavChar = new favChar(favCharData);
+        await newFavChar.save();
+        console.log(chalk.greenBright('Se ha agregado un nuevo personaje favorito de manera exitosa'));
+        res.status(201).json({
+            msg: 'Personaje favorito agregado',
+            id: newFavChar.id
+        });
     } catch (error) {
-        console.error("Error al agregar favorito:", error);
-        res.status(500).json({ msg: "Error al agregar el personaje favorito" });
+        console.error(chalk.redBright('Error en el controller al agregar un nuevo personaje favorito', error));
+        res.status(500).json({
+            msg: 'Error interno al agregar un personaje favorito'
+        })
     }
+    
 }
 
 export const deleteFavs = async(req, res) =>{
+    const id = req.params.id;
     try {
-        const id = req.params.id;
-        console.log('ID recibido para eliminar:', id); // Verifica que el id recibido es el correcto
-        const status = await favCharacterManager.deleteFav(id);
-
-        if (status) {
-            res.json({ msg: 'Personaje eliminado correctamente de los favoritos' });
+        console.log('ID a eliminar: ', id);
+        const deletedFavCharacter = await favChar.findOneAndDelete({id});
+        if (deletedFavCharacter) {
+            console.log(chalk.greenBright('Personaje favorito eliminado por ID de manera exitosa'));
+            res.json({
+                msg: 'Personaje favorito eliminado correctamente de tu lista de favoritos'
+            });
         } else {
-            res.status(404).json({ msg: 'No se encontró el personaje para eliminar' });
+            console.log(chalk.redBright('Error al elimnar un personaje favorito por ID'));
+            res.status(404).json({
+                msg: 'No se encontro el personaje favorito solicitado'
+            })
         }
     } catch (error) {
-        console.error('Error al eliminar personaje favorito:', error);
-        res.status(500).json({ msg: "Error al eliminar personaje favorito" });
+        console.error(chalk.redBright('Error en el controller al eliminar un personaje favorito por ID', error));
+        res.status(500).json({
+            msg: 'Error al eliminar el personaje favorito'
+        })
+    }
+}
+
+export const updateFavChar = async(req, res) => {
+    const id = req.params.id;
+    const newFavData = req.body;
+    try {
+        const updatedFavCharacter = await favChar.findOneAndReplace({id}, newFavData, {new: true});
+        if (updatedFavCharacter) {
+            console.log(chalk.greenBright('Personaje favorito actualizado de manera exitosa'));
+            res.json({
+                msg: 'Personaje favorito actualizado correctamente'
+            })
+        } else {
+            res.status(404).json({
+                msg: 'Personaje favorito no encontrado'
+            })
+        };
+    } catch (error) {
+        console.error(chalk.redBright('Error en el controlador al actualizar un personaje favorito', error));
+        res.status(500).json({
+            msg: 'Error interno del servidor'
+        })
     }
 }

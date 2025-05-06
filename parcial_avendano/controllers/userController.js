@@ -1,4 +1,5 @@
-import AppUsersManager from "../classes/userModel.js";
+import chalk from "chalk";
+import { User } from "../models/userSchema";
 
 const appUserModel = new AppUsersManager;
 //import jsonwebtoken from "jsonwebtoken";

@@ -8,7 +8,6 @@ import homeRoutes from "./routes/homeRoute.js"
 import userRoutes from "./routes/userRoutes.js";
 import chalk from "chalk";
 
-
 // Este es un parseador para el body ya que si intento leer algo desde el body, por ejemplo, info de un formulario, no lo puedo hacer sin este middleware
 import bodyParser from "body-parser";
 dotenv.config();
@@ -31,7 +30,6 @@ app.use('/api', homeRoutes);
 app.use('/api/characters', characterRoutes);
 app.use('/api/favorites', favCharactersRoutes);
 app.use('/api/users', userRoutes);
-
 
 app.listen(port, () =>{
     console.log(chalk.cyanBright('Status del servidor: Corriendo en el puerto 2727'));

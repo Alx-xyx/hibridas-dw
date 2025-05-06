@@ -6,10 +6,10 @@ const router = express.Router();
 
 //* Rutas y metodos para obtener mis usuarios
 router
-    .get('/users', getUsers)
-    .get('/users/:id', getUserByID)
-    .post('/users/add', addUser)
-    .delete('/users/delete/:id', deleteUser)
-    .put('/users/change/:id', updateUser)
+    .get('/', getUsers)
+    .get('/:id', getUserByID)
+    .post('/add', addUser)
+    .delete('/delete/:id', deleteUser)
+    .put('/change/:id', updateUser)
 
 export default router

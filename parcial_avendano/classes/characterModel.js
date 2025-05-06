@@ -13,7 +13,6 @@ class CharacterManager{
 
     constructor(characters = []){
         this.characters = characters;
-
     }
     
     //! Metodos

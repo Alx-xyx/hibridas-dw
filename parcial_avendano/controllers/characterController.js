@@ -7,7 +7,7 @@ export const getCharacters = async(req, res) =>{
     console.log(chalk.bgGreen('Te encuentras en la ruta: Characters'));
     try {
         const characters = await Character.find();
-        res.json(characters);
+        res.status(200).json(characters);
         console.log(chalk.greenBright('Se han obtenido los personajes exitosamente', characters));
     } catch (error) {
         console.error(chalk.redBright('Ha ocurrido un error al intentar obtener a los personajes. Error en el Controller'));
