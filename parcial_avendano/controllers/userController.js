@@ -19,7 +19,7 @@ export const getUsers = async(req, res) =>{
 
 export const getUserByID = async(req, res) =>{
     const id = req.params.id;
-    const user = await User.getUserByID(id);
+    const user = await User.findById(id);
     if (user) {
         res.status(200).json(user);
     } else {
@@ -30,26 +30,44 @@ export const getUserByID = async(req, res) =>{
 }
 
 export const addUser = async(req, res) =>{
-    const user = req.body;
-    console.log({
-        user
-    });
-    const id = await User.save(user);
-    res.json({
-        id
-    })
+    const userData = req.body;
+    console.log({userData});
+    try {
+        const nuevoUsuario = new User(userData)
+        await nuevoUsuario.save()
+        console.log(chalk.greenBright('Se ha agregado el personaje de manera correcta'));
+        res.status(201).json({
+            msg: 'Usuario agregado',
+            id: nuevoUsuario.id
+            })
+    } catch (error) {
+        console.error(chalk.redBright('Error en el controller al agregar personaje',error));
+        res.status(500).json({
+            msg: 'Error interno al agregar el personaje'
+        })
+    }
 }
 
 export const deleteUser = async(req, res) =>{
     const id = req.params.id;
-    const status = await User.deleteUser(id);
-    if (status) {
-        res.json({
-            msg: 'Usuario eliminado con exito'
-        })
-    } else {
-        res.status(404).json({
-            msg: 'Usuario no encontrado'
+    try {
+        console.log('ID a eliminar: ', id);
+        const deletedUser = await User.findOneAndDelete({id});
+        if (deleteUser) {
+            console.log(chalk.greenBright('Personaje eliminado por ID de manera correcta'));
+            res.json({
+                msg: 'Personaje eliminado correctamente de la seccion de personajes'
+            })
+        } else {
+            console.log(chalk.redBright('Error al eliminar por ID un personaje'));
+            res.status(404).json({
+                msg: 'No se encontró el personaje solicitado'
+            })
+        }
+    } catch (error) {
+        console.error(chalk.redBright('Error en el controller al eliminar un personaje por ID', error));
+        res.status(500).json({
+            msg: 'Error al eliminar el personaje'
         })
     }
 }
@@ -57,17 +75,24 @@ export const deleteUser = async(req, res) =>{
 export const updateUser = async(req, res) =>{
     // Pido el ID y el email por parametro
     const id = req.params.id;
-    const newEmail = req.body;
-    const status = await User.updateUser(id, newEmail);
-
-    if (status) {
-        res.json({
-            msg: "Usuario actualizado con exito"
-        })
-    } else {
-        res.json({
-            msg: "No se encontro el usuario"
-        })
+    const newData = req.body;
+    try {
+        const updatedUser = await User.findOneAndReplace({id}, newData, {new: true});
+        if (updatedUser) {
+            console.log(chalk.greenBright('Personaje actualizado de manera exitosa'));
+            res.json({
+                msg: 'Personaje actualizado correctamente' 
+            });
+        } else {
+            res.status(404).json({
+                msg: 'Personaje no encontrado' 
+            });
+        }
+    } catch (error) {
+        console.error(chalk.redBright('Error en el controlador al actualizar un personaje:', error));
+        res.status(500).json({
+            msg: 'Error interno del servidor' 
+        });
     }
 }
 

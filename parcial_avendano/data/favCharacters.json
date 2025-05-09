@@ -1,14 +1,14 @@
 [
   {
-    "id": "blackSwan_char",
+    "id": 2,
     "name": "Black Swan"
   },
   {
-    "id": "welt_char",
+    "id": 1,
     "name": "Welt"
   },
   {
-    "id": "kafka_char",
+    "id": 3,
     "name": "Kafka" 
   }
 ]

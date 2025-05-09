@@ -29,7 +29,7 @@ class CharacterManager{
 
     async getCharById(id){
         try {
-            return await Character.findOne({id});
+            return await Character.findOne(id);
         } catch (error) {
             console.error(chalk.redBright('Error en el modelo al obtener personajes'));
             console.error(error);

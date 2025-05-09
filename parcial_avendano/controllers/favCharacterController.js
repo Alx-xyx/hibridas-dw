@@ -16,9 +16,9 @@ export const getFavs = async (req, res) => {
 
 export const addFavs = async (req, res) => {
     const favCharData = req.body;
-    console.log(favCharData);
+    console.log({favCharData});
     try {
-        const newFavChar = new favChar(favCharData);
+        const newFavChar = new FavCharacter(favCharData);
         await newFavChar.save();
         console.log(chalk.greenBright('Se ha agregado un nuevo personaje favorito de manera exitosa'));
         res.status(201).json({
@@ -38,7 +38,7 @@ export const deleteFavs = async(req, res) =>{
     const id = req.params.id;
     try {
         console.log('ID a eliminar: ', id);
-        const deletedFavCharacter = await favChar.findOneAndDelete({id});
+        const deletedFavCharacter = await FavCharacter.findOneAndDelete({id});
         if (deletedFavCharacter) {
             console.log(chalk.greenBright('Personaje favorito eliminado por ID de manera exitosa'));
             res.json({
@@ -62,7 +62,7 @@ export const updateFavChar = async(req, res) => {
     const id = req.params.id;
     const newFavData = req.body;
     try {
-        const updatedFavCharacter = await favChar.findOneAndReplace({id}, newFavData, {new: true});
+        const updatedFavCharacter = await FavCharacter.findOneAndReplace({id}, newFavData, {new: true});
         if (updatedFavCharacter) {
             console.log(chalk.greenBright('Personaje favorito actualizado de manera exitosa'));
             res.json({
