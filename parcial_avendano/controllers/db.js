@@ -6,7 +6,6 @@ import chalk from "chalk";
 
 const dburi = process.env.MONGODB_URI;
 
-
 //* Defino mi constante que manejara la base de datos
 export const connectDB = async () => {
     try {

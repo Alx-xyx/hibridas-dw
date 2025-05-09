@@ -18,7 +18,7 @@ export const getCharacters = async(req, res) =>{
 export const getCharById = async(req, res) =>{
     const id = req.params.id;
     try {
-        const characterById = await Character.findOne(id);
+        const characterById = await Character.find(id);
         if (characterById) {
             console.log(chalk.greenBright('Se han obtenido el personaje por ID'));
             res.status(200).json(characterById);

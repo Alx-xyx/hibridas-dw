@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 //? Creo el Schema que utilizarà mi base de datos
 const characterSchema = new mongoose.Schema({
-    id: Object,
+    id: Number,
     name: String,
     elemento: String,
     path: String,
